@@ -1,0 +1,273 @@
+
+.history-page {
+  width: 100%;
+  padding: 10px 0;
+  color: #111827;
+}
+
+.history-header {
+  margin-bottom: 28px;
+}
+
+.history-header h1 {
+  font-size: 28px;
+  font-weight: 750;
+  margin: 0 0 8px;
+}
+
+.history-header p {
+  color: #64748b;
+  font-size: 14px;
+  margin: 0;
+}
+
+.history-container {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.04);
+}
+
+.history-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+
+.history-toolbar h2 {
+  font-size: 18px;
+  margin: 0 auto 0 0;
+}
+
+.history-search {
+  width: 230px;
+  max-width: 100%;
+  padding: 11px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+  outline: none;
+}
+
+.history-search:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+.history-refresh-button {
+  background: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 11px 16px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.history-refresh-button:hover {
+  background: #4338ca;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.history-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  transition: 0.2s;
+}
+
+.history-card:hover {
+  border-color: #c7d2fe;
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.07);
+  transform: translateY(-2px);
+}
+
+.history-card-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.history-card-content h3 {
+  font-size: 16px;
+  margin: 0 0 12px;
+  overflow-wrap: anywhere;
+}
+
+.history-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-bottom: 10px;
+}
+
+.history-meta span {
+  padding: 5px 10px;
+  background: #f1f5f9;
+  color: #475569;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.history-date {
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+.history-details {
+  margin-top: 15px;
+}
+
+.history-details summary {
+  color: #4f46e5;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.history-generated-content {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  background: #f8fafc;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 12px;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.history-actions {
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+}
+
+.history-actions button {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 17px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.history-edit-button {
+  background: #ecfdf5;
+  color: #047857;
+}
+
+.history-edit-button:hover {
+  background: #d1fae5;
+}
+
+.history-delete-button {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.history-delete-button:hover {
+  background: #fee2e2;
+}
+
+.history-empty {
+  text-align: center;
+  padding: 55px 20px;
+  color: #64748b;
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 12px;
+}
+
+.history-empty h3 {
+  color: #334155;
+}
+
+.history-loading,
+.history-error {
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.history-loading {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.history-error {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.history-error button {
+  margin-left: 12px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .history-header h1 {
+    font-size: 23px;
+  }
+
+  .history-container {
+    padding: 16px;
+  }
+
+  .history-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .history-toolbar h2 {
+    margin-bottom: 5px;
+  }
+
+  .history-search {
+    width: 100%;
+  }
+
+  .history-card {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .history-actions {
+    width: 100%;
+  }
+
+  .history-actions button {
+    flex: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .history-container {
+    padding: 12px;
+  }
+
+  .history-card {
+    padding: 15px;
+  }
+
+  .history-actions {
+    flex-direction: column;
+  }
+
+  .history-actions button {
+    width: 100%;
+  }
+}

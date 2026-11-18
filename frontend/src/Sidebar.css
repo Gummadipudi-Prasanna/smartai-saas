@@ -1,0 +1,146 @@
+
+.sidebar {
+  width: 260px;
+  min-width: 260px;
+  min-height: 100vh;
+  background: #111827;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 26px 17px;
+  box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 0 10px 28px;
+  border-bottom: 1px solid #293244;
+}
+
+.brand-icon {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #8b5cf6, #4f46e5);
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 5px 15px rgba(99, 102, 241, 0.25);
+}
+
+.sidebar-brand h2 {
+  margin: 0;
+  font-size: 21px;
+  font-weight: 750;
+  letter-spacing: -0.5px;
+}
+
+.sidebar-brand span {
+  display: block;
+  margin-top: 5px;
+  color: #9ca3af;
+  font-size: 10px;
+  letter-spacing: 1.7px;
+}
+
+.sidebar-menu {
+  flex: 1;
+  padding-top: 32px;
+}
+
+.menu-heading {
+  color: #94a3b8;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.7px;
+  padding-left: 13px;
+  margin-bottom: 17px;
+}
+
+.sidebar-link,
+.sidebar-logout {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 15px;
+  margin-bottom: 8px;
+  border: 1px solid transparent;
+  border-radius: 11px;
+  background: transparent;
+  color: #cbd5e1;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sidebar-link:hover {
+  background: #263248;
+  color: #ffffff;
+  transform: translateX(3px);
+}
+
+.sidebar-link.active {
+  background: linear-gradient(110deg, #6d4aff, #5145cd);
+  color: #ffffff;
+  box-shadow: 0 5px 15px rgba(79, 70, 229, 0.22);
+}
+
+.sidebar-bottom {
+  border-top: 1px solid #293244;
+  padding-top: 19px;
+}
+
+.sidebar-logout {
+  color: #fca5a5;
+}
+
+.sidebar-logout:hover {
+  background: rgba(220, 38, 38, 0.13);
+  color: #fecaca;
+}
+
+.sidebar-version {
+  color: #64748b;
+  text-align: center;
+  font-size: 11px;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: relative;
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    min-height: auto;
+    padding: 18px 14px;
+  }
+
+  .sidebar-brand {
+    padding-bottom: 18px;
+  }
+
+  .sidebar-menu {
+    padding-top: 18px;
+  }
+
+  .sidebar-link,
+  .sidebar-logout {
+    padding: 12px;
+    margin-bottom: 5px;
+  }
+
+  .sidebar-bottom {
+    margin-top: 15px;
+  }
+}
