@@ -55,9 +55,19 @@
   border: none;
   outline: none;
   background: transparent;
-  width: 170px;
+  width: 190px;
   font-size: 13px;
   color: #111827;
+}
+
+.navbar-search-clear {
+  border: none;
+  background: transparent;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 2px;
 }
 
 .navbar-icon {
@@ -72,6 +82,7 @@
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s ease;
+  position: relative;
 }
 
 .navbar-icon:hover {
@@ -80,13 +91,102 @@
   border-color: #c7d2fe;
 }
 
+.navbar-notification-wrapper {
+  position: relative;
+}
+
+.navbar-notification-panel {
+  position: absolute;
+  top: 54px;
+  right: 0;
+  width: 330px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.13);
+  padding: 16px;
+  z-index: 200;
+}
+
+.notification-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e8edf5;
+}
+
+.notification-header h3 {
+  margin: 0;
+  color: #111827;
+  font-size: 16px;
+}
+
+.notification-header button {
+  border: none;
+  background: transparent;
+  color: #64748b;
+  cursor: pointer;
+  display: flex;
+}
+
+.notification-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 0;
+  color: #4f46e5;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.notification-item:last-child {
+  border-bottom: none;
+  padding-bottom: 4px;
+}
+
+.notification-item strong {
+  color: #111827;
+  font-size: 13px;
+}
+
+.notification-item p {
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 5px 0;
+}
+
+.notification-item span {
+  color: #4f46e5;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.notification-link {
+  border: none;
+  background: transparent;
+  color: #4f46e5;
+  font-size: 12px;
+  font-weight: 650;
+  padding: 4px 0;
+  cursor: pointer;
+}
+
+.notification-link:hover {
+  text-decoration: underline;
+}
+
 .navbar-user {
   display: flex;
   align-items: center;
   gap: 12px;
   padding-left: 16px;
+  border: none;
   border-left: 1px solid #e2e8f0;
+  background: transparent;
   color: #4f46e5;
+  text-align: left;
+  cursor: pointer;
 }
 
 .navbar-user strong {
@@ -133,5 +233,19 @@
 
   .navbar-user {
     padding-left: 10px;
+  }
+
+  .navbar-user strong {
+    max-width: 85px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .navbar-notification-panel {
+    position: fixed;
+    top: 145px;
+    right: 12px;
+    left: 12px;
+    width: auto;
   }
 }

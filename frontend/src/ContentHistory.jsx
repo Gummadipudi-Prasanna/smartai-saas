@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "./ContentHistory.css";
 
-function ContentHistory() {
+function ContentHistory({
+  searchQuery = "",
+  onSearchChange = () => {},
+}) {
   const [contents, setContents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [search, setSearch] = useState("");
 
   // Fetch Content History
   const fetchHistory = async () => {
@@ -110,12 +112,15 @@ function ContentHistory() {
     }
   };
 
-  // Search Content
-  const filteredContents = contents.filter((item) =>
-    (item.topic || "")
-      .toLowerCase()
-      .includes(search.toLowerCase())
-  );
+  // Search by topic or generated content
+  const filteredContents = contents.filter((item) => {
+    const query = searchQuery.toLowerCase().trim();
+
+    return (
+      (item.topic || "").toLowerCase().includes(query) ||
+      (item.generated_text || "").toLowerCase().includes(query)
+    );
+  });
 
   if (loading) {
     return (
@@ -155,9 +160,9 @@ function ContentHistory() {
           <input
             type="text"
             className="history-search"
-            placeholder="Search by topic..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search by topic or content..."
+            value={searchQuery}
+            onChange={(e) => onSearchChange(e.target.value)}
           />
 
           <button
@@ -175,8 +180,8 @@ function ContentHistory() {
           <div className="history-empty">
             <h3>No content found</h3>
             <p>
-              {search
-                ? "Try searching with a different topic."
+              {searchQuery
+                ? "Try searching with a different keyword."
                 : "Generate your first content to see it here."}
             </p>
           </div>

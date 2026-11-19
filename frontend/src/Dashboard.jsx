@@ -17,6 +17,7 @@ function Dashboard({ onLogout }) {
   const [profile, setProfile] = useState(null);
 
   const [error, setError] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
   // Restore the last opened section after refresh
   const [activeSection, setActiveSection] = useState(() => {
@@ -34,6 +35,11 @@ function Dashboard({ onLogout }) {
   const handleLogout = () => {
     localStorage.removeItem("activeSection");
     onLogout();
+  };
+
+  // Open Content History when search is submitted
+  const handleSearchSubmit = () => {
+    setActiveSection("history");
   };
 
   // Fetch dashboard data
@@ -74,6 +80,7 @@ function Dashboard({ onLogout }) {
         setSubscription(subscriptionRes.data);
         setUsage(usageRes.data);
         setProfile(profileRes.data);
+        setError("");
       } catch (err) {
         console.error(
           "Dashboard Error:",
@@ -100,7 +107,12 @@ function Dashboard({ onLogout }) {
         return <ContentGenerator />;
 
       case "history":
-        return <ContentHistory />;
+        return (
+          <ContentHistory
+            searchQuery={searchQuery}
+            onSearchChange={setSearchQuery}
+          />
+        );
 
       case "subscription":
         return <Subscription />;
@@ -230,6 +242,11 @@ function Dashboard({ onLogout }) {
         <Navbar
           username={profile.username || username}
           plan={subscription.plan}
+          usage={usage}
+          searchQuery={searchQuery}
+          onSearchChange={setSearchQuery}
+          onSearchSubmit={handleSearchSubmit}
+          onNavigate={setActiveSection}
         />
 
         <div className="dashboard-content">
