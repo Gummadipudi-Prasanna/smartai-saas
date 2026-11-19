@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "./api";
 import "./ContentHistory.css";
 
 function ContentHistory({
@@ -16,8 +16,8 @@ function ContentHistory({
     try {
       const token = localStorage.getItem("access");
 
-      const response = await axios.get(
-        "http://127.0.0.1:8000/api/ai/generate/",
+      const response = await api.get(
+        "/api/ai/generate/",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -55,8 +55,8 @@ function ContentHistory({
     try {
       const token = localStorage.getItem("access");
 
-      await axios.patch(
-        `http://127.0.0.1:8000/api/ai/generate/${id}/`,
+      await api.patch(
+        `/api/ai/generate/${id}/`,
         { topic: newTopic.trim() },
         {
           headers: {
@@ -88,8 +88,8 @@ function ContentHistory({
     try {
       const token = localStorage.getItem("access");
 
-      await axios.delete(
-        `http://127.0.0.1:8000/api/ai/generate/${id}/`,
+      await api.delete(
+        `/api/ai/generate/${id}/`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

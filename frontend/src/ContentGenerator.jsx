@@ -1,6 +1,7 @@
 
 import { useState } from "react";
-import axios from "axios";
+import api from "./api";
+
 import {
   Sparkles,
   FileText,
@@ -22,6 +23,7 @@ function ContentGenerator() {
   const [message, setMessage] = useState("");
   const [isError, setIsError] = useState(false);
 
+  // GENERATE CONTENT
   const handleGenerate = async (e) => {
     e.preventDefault();
 
@@ -39,8 +41,8 @@ function ContentGenerator() {
     try {
       const token = localStorage.getItem("access");
 
-      const response = await axios.post(
-        "http://127.0.0.1:8000/api/ai/generate/",
+      const response = await api.post(
+        "/api/ai/generate/",
         {
           topic: topic.trim(),
           content_type: contentType,
@@ -79,6 +81,7 @@ function ContentGenerator() {
     }
   };
 
+  // DOWNLOAD CONTENT
   const handleDownload = () => {
     if (!generatedText) return;
 

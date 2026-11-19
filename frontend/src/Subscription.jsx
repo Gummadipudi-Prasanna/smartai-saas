@@ -1,6 +1,7 @@
 
 import { useEffect, useState, useCallback } from "react";
-import axios from "axios";
+import api from "./api";
+
 import {
   CheckCircle2,
   Crown,
@@ -19,6 +20,7 @@ function Subscription() {
   const [success, setSuccess] = useState("");
   const [upgrading, setUpgrading] = useState(false);
 
+  // Load Subscription Details
   const loadSubscription = useCallback(async () => {
     try {
       const token = localStorage.getItem("access");
@@ -33,12 +35,13 @@ function Subscription() {
       };
 
       const [subscriptionRes, usageRes] = await Promise.all([
-        axios.get(
-          "http://127.0.0.1:8000/api/subscriptions/my-subscription/",
+        api.get(
+          "/api/subscriptions/my-subscription/",
           { headers }
         ),
-        axios.get(
-          "http://127.0.0.1:8000/api/subscriptions/usage/",
+
+        api.get(
+          "/api/subscriptions/usage/",
           { headers }
         ),
       ]);
@@ -60,6 +63,7 @@ function Subscription() {
     loadSubscription();
   }, [loadSubscription]);
 
+  // Upgrade Subscription
   const handleUpgrade = async () => {
     try {
       setUpgrading(true);
@@ -73,8 +77,8 @@ function Subscription() {
         return;
       }
 
-      const response = await axios.post(
-        "http://127.0.0.1:8000/api/subscriptions/upgrade/",
+      const response = await api.post(
+        "/api/subscriptions/upgrade/",
         {},
         {
           headers: {

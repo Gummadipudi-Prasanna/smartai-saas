@@ -1,8 +1,9 @@
 
 import { useState } from "react";
-import axios from "axios";
+//import axios from "axios";
 import Dashboard from "./Dashboard";
 import "./App.css";
+import api from "./api";
 
 function App() {
   const [username, setUsername] = useState("");

@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "./api";
 
 import ContentGenerator from "./ContentGenerator";
 import ContentHistory from "./ContentHistory";
@@ -58,20 +58,20 @@ function Dashboard({ onLogout }) {
           usageRes,
           profileRes,
         ] = await Promise.all([
-          axios.get(
-            "http://127.0.0.1:8000/api/analytics/",
+          api.get("/api/analytics/", { headers }),
+
+          api.get(
+            "/api/subscriptions/my-subscription/",
             { headers }
           ),
-          axios.get(
-            "http://127.0.0.1:8000/api/subscriptions/my-subscription/",
+
+          api.get(
+            "/api/subscriptions/usage/",
             { headers }
           ),
-          axios.get(
-            "http://127.0.0.1:8000/api/subscriptions/usage/",
-            { headers }
-          ),
-          axios.get(
-            "http://127.0.0.1:8000/api/auth/profile/",
+
+          api.get(
+            "/api/auth/profile/",
             { headers }
           ),
         ]);
