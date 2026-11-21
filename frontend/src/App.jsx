@@ -1,6 +1,5 @@
 
 import { useState } from "react";
-//import axios from "axios";
 import Dashboard from "./Dashboard";
 import "./App.css";
 import api from "./api";
@@ -24,6 +23,7 @@ function App() {
     Boolean(localStorage.getItem("access"))
   );
 
+  // LOGIN
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -32,13 +32,10 @@ function App() {
     setIsError(false);
 
     try {
-      const response = await axios.post(
-        "http://127.0.0.1:8000/api/auth/login/",
-        {
-          username: username.trim(),
-          password: password,
-        }
-      );
+      const response = await api.post("/api/auth/login/", {
+        username: username.trim(),
+        password,
+      });
 
       localStorage.setItem("access", response.data.access);
       localStorage.setItem("refresh", response.data.refresh);
@@ -53,7 +50,7 @@ function App() {
       if (error.response?.status === 401) {
         setMessage("Invalid username or password.");
       } else if (!error.response) {
-        setMessage("Backend server is not running.");
+        setMessage("Unable to connect to the backend server.");
       } else {
         setMessage("Login failed. Please try again.");
       }
@@ -62,6 +59,7 @@ function App() {
     }
   };
 
+  // REGISTER
   const handleRegister = async (e) => {
     e.preventDefault();
 
@@ -83,16 +81,13 @@ function App() {
     setLoading(true);
 
     try {
-      await axios.post(
-        "http://127.0.0.1:8000/api/auth/register/",
-        {
-          username: username.trim(),
-          email: email.trim(),
-          password: password,
-          first_name: firstName.trim(),
-          last_name: lastName.trim(),
-        }
-      );
+      await api.post("/api/auth/register/", {
+        username: username.trim(),
+        email: email.trim(),
+        password,
+        first_name: firstName.trim(),
+        last_name: lastName.trim(),
+      });
 
       setIsError(false);
       setMessage("Registration successful! Please login.");
@@ -112,10 +107,11 @@ function App() {
       setIsError(true);
 
       if (!error.response) {
-        setMessage("Backend server is not running.");
+        setMessage("Unable to connect to the backend server.");
       } else if (error.response.status === 400) {
         const errors = error.response.data;
         const firstError = Object.values(errors).flat()[0];
+
         setMessage(
           typeof firstError === "string"
             ? firstError
@@ -129,6 +125,7 @@ function App() {
     }
   };
 
+  // LOGOUT
   const handleLogout = () => {
     localStorage.removeItem("access");
     localStorage.removeItem("refresh");
@@ -142,11 +139,7 @@ function App() {
   };
 
   if (isLoggedIn) {
-    return (
-      <>
-        <Dashboard onLogout={handleLogout} />
-      </>
-    );
+    return <Dashboard onLogout={handleLogout} />;
   }
 
   return (
@@ -233,8 +226,7 @@ function App() {
         <p>
           {isRegister
             ? "Already have an account?"
-            : "Don't have an account?"}
-          {" "}
+            : "Don't have an account?"}{" "}
           <button
             type="button"
             className="toggle-auth-button"
